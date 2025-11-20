@@ -913,5 +913,45 @@
             });
         });
     </script>
+    // 在 js/script.js 文件中
+document.addEventListener('DOMContentLoaded', function() {
+    
+    // 1. 为 "Global News" 按钮添加点击事件
+    const newsButton = document.querySelector('button:contains("Global News")'); // 需要更精确的选择器
+    if (newsButton) {
+        newsButton.addEventListener('click', function() {
+            // 点击后，动态加载新闻内容到页面上的某个区域
+            loadGlobalNews();
+        });
+    }
+
+    // 2. 模拟加载新闻内容的函数
+    function loadGlobalNews() {
+        // 找到页面中用于显示内容的目标容器
+        const contentArea = document.getElementById('main-content');
+        
+        // 模拟从服务器获取的数据（实际应用中这里会是Ajax请求）
+        const newsData = [
+            { title: "Breaking: New Zealand Signs New Trade Deal", excerpt: "The agreement is expected to boost exports..." },
+            { title: "Scientists Discover New Marine Species", excerpt: "A team from the University of Auckland has made a breakthrough..." }
+        ];
+        
+        // 清空现有内容
+        contentArea.innerHTML = '';
+        
+        // 生成新闻列表HTML并插入
+        newsData.forEach(news => {
+            const newsElement = document.createElement('div');
+            newsElement.className = 'news-item';
+            newsElement.innerHTML = `
+                <h3>${news.title}</h3>
+                <p>${news.excerpt}</p>
+                <a href="news-detail.html">Read More</a>
+            `;
+            contentArea.appendChild(newsElement);
+        });
+    }
+});
 </body>
+
 </html>
